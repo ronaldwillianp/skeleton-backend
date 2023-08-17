@@ -10,7 +10,6 @@
 
 db.sqlite3
 errores.txt
-manage.py
 
 *.pyc
 *.pyo
