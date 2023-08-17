@@ -6,6 +6,8 @@
 /apps/**/migrations/
 
 Info.txt
+01_groups_fixtures.json
+02_users_fixtures.json
 
 .env.local
 .env.*.local
