@@ -5,6 +5,8 @@
 */__pycache__
 /apps/**/migrations/
 
+Info.txt
+
 .env.local
 .env.*.local
 
