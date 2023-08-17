@@ -29,28 +29,26 @@ class Noticia(models.Model):
     def __str__(self):
         return self.titulo
 
+class EstadoComentario(models.Model):
+    nombre = models.CharField(max_length=150, null=False, blank=False)
+    descripcion = models.TextField(null=True, blank=True)
+    def __str__(self):
+        return self.nombre
+
 class ComentartioNoticia(models.Model):
     comentario = models.TextField(null=False, blank=False)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     creada_por = models.ForeignKey(User, on_delete=models.PROTECT, null=False, blank=False)
     noticia = models.ForeignKey(Noticia, on_delete=models.PROTECT, null=False, blank=False)
+    estado = models.ForeignKey(EstadoComentario, on_delete=models.PROTECT, null=False, blank=False)
 
     def __str__(self):
         return self.comentario
 
-class EstadoFAQ(models.Model):
-    nombre = models.CharField(max_length=150, null=False, blank=False)
-    descripcion = models.TextField(null=True, blank=True)
-
-    def __str__(self):
-        return self.nombre
-
 class FAQ(models.Model):
     pregunta = models.CharField(max_length=255, null=False, blank=False)
     respuesta = models.TextField(null=False, blank=False)
-    estado = models.ForeignKey(EstadoFAQ, on_delete=models.PROTECT, null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
-    creada_por = models.ForeignKey(User, on_delete=models.PROTECT, null=False, blank=False)
 
     def __str__(self):
         return self.pregunta
