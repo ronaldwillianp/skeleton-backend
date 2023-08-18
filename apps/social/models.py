@@ -52,3 +52,10 @@ class FAQ(models.Model):
 
     def __str__(self):
         return self.pregunta
+
+class EnlacesInteres(models.Model):
+    nombre = models.CharField(max_length=255, null=False, blank=False)
+    enlace = models.URLField(null=False, blank=False)
+
+    def __str__(self):
+        return self.nombre
