@@ -1,5 +1,6 @@
 from rest_framework import viewsets
 from .serializers import *
+
 class CategoriaNoticiaViewSet(viewsets.ModelViewSet):
     queryset = CategoriaNoticia.objects.all()
     serializer_class = CategoriaNoticiaSerializer
