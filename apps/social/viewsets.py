@@ -25,6 +25,10 @@ class FAQViewSet(viewsets.ModelViewSet):
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
 
+class CategoriaEnlaceInteresViewSet(viewsets.ModelViewSet):
+    queryset = CategoriaEnlaceInteres.objects.all()
+    serializer_class = CategoriaEnlaceInteresSerializer
+
 class EnlacesInteresViewSet(viewsets.ModelViewSet):
     queryset = EnlacesInteres.objects.all()
     serializer_class = EnlacesInteresSerializer

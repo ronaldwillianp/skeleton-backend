@@ -53,9 +53,18 @@ class FAQ(models.Model):
     def __str__(self):
         return self.pregunta
 
-class EnlacesInteres(models.Model):
-    nombre = models.CharField(max_length=255, null=False, blank=False)
-    enlace = models.URLField(null=False, blank=False)
+class CategoriaEnlaceInteres(models.Model):
+    nombre = models.CharField(max_length=150, null=False, blank=False)
+    descripcion = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.nombre
+
+class EnlacesInteres(models.Model):
+    nombre = models.CharField(max_length=255, null=False, blank=False)
+    enlace = models.URLField(null=False, blank=False)
+    categoria = models.ForeignKey(CategoriaEnlaceInteres, on_delete=models.PROTECT, null=False, blank=False, related_name="enlaces")
+
+    def __str__(self):
+        return self.nombre
+

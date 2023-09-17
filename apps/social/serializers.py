@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CategoriaNoticia, EstadoNoticia, Noticia, EstadoComentario, ComentartioNoticia, FAQ, EnlacesInteres
+from .models import CategoriaNoticia, EstadoNoticia, Noticia, EstadoComentario, ComentartioNoticia, FAQ, EnlacesInteres, CategoriaEnlaceInteres
 from apps.administracion.serializers import UserSerializer
 
 class CategoriaNoticiaSerializer(serializers.ModelSerializer):
@@ -13,9 +13,10 @@ class EstadoNoticiaSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class NoticiaSerializer(serializers.ModelSerializer):
-    estado = EstadoNoticiaSerializer(read_only=True)
-    categoria = CategoriaNoticiaSerializer(read_only=True, many=True)
-    creada_por = UserSerializer(read_only=True)
+
+    estado_info = EstadoNoticiaSerializer(read_only=True, source="estado")
+    categoria_info = CategoriaNoticiaSerializer(read_only=True, many=True, source="categoria")
+    creada_por_info = UserSerializer(read_only=True, source="creada_por")
 
     class Meta:
         model = Noticia
@@ -43,4 +44,11 @@ class EnlacesInteresSerializer(serializers.ModelSerializer):
     class Meta:
         model = EnlacesInteres
         fields = '__all__'
+
+class CategoriaEnlaceInteresSerializer(serializers.ModelSerializer):
+    enlaces = EnlacesInteresSerializer(many=True, read_only=True)
+    class Meta:
+        model = CategoriaEnlaceInteres
+        fields = '__all__'
+
 
