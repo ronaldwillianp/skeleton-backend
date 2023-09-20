@@ -35,7 +35,7 @@ class EstadoComentario(models.Model):
     def __str__(self):
         return self.nombre
 
-class ComentartioNoticia(models.Model):
+class ComentarioNoticia(models.Model):
     comentario = models.TextField(null=False, blank=False)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     creada_por = models.ForeignKey(User, on_delete=models.PROTECT, null=False, blank=False)
@@ -68,3 +68,10 @@ class EnlacesInteres(models.Model):
     def __str__(self):
         return self.nombre
 
+class Imagen(models.Model):
+    imagen = models.ImageField()
+
+class Coleccion(models.Model):
+    titulo = models.CharField(max_length=250, blank =True, null=True)
+    descripcion = models.CharField(max_length=255, blank=True, null=True)
+    imagenes = models.ManyToManyField(Imagen, null=False, blank=False)

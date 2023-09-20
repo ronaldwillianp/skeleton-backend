@@ -17,9 +17,9 @@ class EstadoComentarioViewSet(viewsets.ModelViewSet):
     queryset = EstadoComentario.objects.all()
     serializer_class = EstadoComentarioSerializer
 
-class ComentartioNoticiaViewSet(viewsets.ModelViewSet):
-    queryset = ComentartioNoticia.objects.all()
-    serializer_class = ComentartioNoticiaSerializer
+class ComentarioNoticiaViewSet(viewsets.ModelViewSet):
+    queryset = ComentarioNoticia.objects.all()
+    serializer_class = ComentarioNoticiaSerializer
 
 class FAQViewSet(viewsets.ModelViewSet):
     queryset = FAQ.objects.all()
