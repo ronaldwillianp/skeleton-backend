@@ -41,10 +41,16 @@ class FAQSerializer(serializers.ModelSerializer):
         model = FAQ
         fields = '__all__'
 
+class CategoriaEnlaceInteresMiniSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CategoriaEnlaceInteres
+        fields = ['id', 'nombre']
+
 class EnlacesInteresSerializer(serializers.ModelSerializer):
+    categoria_info=CategoriaEnlaceInteresMiniSerializer(read_only=True, source='categoria')
     class Meta:
         model = EnlacesInteres
-        fields = '__all__'
+        fields = ['id', 'nombre', 'enlace', 'categoria_info']
 
 class CategoriaEnlaceInteresSerializer(serializers.ModelSerializer):
     enlaces = EnlacesInteresSerializer(many=True, read_only=True)
