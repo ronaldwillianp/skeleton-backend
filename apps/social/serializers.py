@@ -50,7 +50,7 @@ class EnlacesInteresSerializer(serializers.ModelSerializer):
     categoria_info=CategoriaEnlaceInteresMiniSerializer(read_only=True, source='categoria')
     class Meta:
         model = EnlacesInteres
-        fields = ['id', 'nombre', 'enlace', 'categoria_info']
+        fields = ['id', 'nombre', 'enlace', 'categoria_info', 'categoria']
 
 class CategoriaEnlaceInteresSerializer(serializers.ModelSerializer):
     enlaces = EnlacesInteresSerializer(many=True, read_only=True)

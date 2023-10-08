@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 class Empresa(models.Model):
-    nombre = models.CharField(max_length=150, null=False, blank=False)
+    nombre = models.CharField(max_length=150, null=False, blank=False, unique=True)
     alias = models.CharField(max_length=150, null=True, blank=True, )
     logo = models.ImageField(upload_to='empresa/logos', null=True, blank=True)
     telefono = models.CharField(max_length=8, null=True, blank=True)
@@ -20,17 +20,35 @@ class Empresa(models.Model):
         return self.nombre
 
 class SoporteTecnico(models.Model):
-    correo = models.EmailField(max_length=50, null=False, blank=False)
+    correo = models.EmailField(max_length=50, null=False, blank=False, unique=True)
     telefono = models.CharField(max_length=8, null=True, blank=True)
 
     def __str__(self):
         return self.nombre
 
 class Socio(models.Model):
-    nombre = models.CharField(max_length=150, null=False, blank=False)
+    nombre = models.CharField(max_length=150, null=False, blank=False, unique=True)
     logo = models.ImageField(upload_to='socio/fotos', null=True, blank=True)
     web = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.nombre
 
+class Servicio(models.Model):
+    nombre = models.CharField(max_length=150, unique=True)
+    imagen = models.ImageField(upload_to='servicios/imagenes')
+    resumen = models.TextField()
+
+    def __str__(self):
+        return self.nombre
+
+
+class Directivo(models.Model):
+    prioridad = models.IntegerField()
+    nombre_completo = models.CharField(max_length=150, unique=True)
+    cargo = models.CharField(max_length=50)
+    imagen = models.ImageField(upload_to='servicios/imagenes', null=True, blank=True)
+    biografia = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.nombre
