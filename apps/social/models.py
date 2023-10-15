@@ -20,6 +20,7 @@ class EstadoNoticia(models.Model):
 class Noticia(models.Model):
     titulo = models.CharField(max_length=150, null=False, blank=False)
     portada = models.ImageField(upload_to='imagenes/portadas', null=True, blank=True)
+    subtitulo = models.TextField(null=True, blank=True)
     descripcion = models.TextField(null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
